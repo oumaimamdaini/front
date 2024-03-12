@@ -23,14 +23,14 @@ export class UserComponent implements OnInit{
  constructor(private userservice:UserService, private route:Router){}
  
  openModal(): void {
-  const modalDiv =  document.getElementById('myModal');
+  const modalDiv =  document.getElementById('exampleModal');
   if(modalDiv!=null){
     modalDiv.style.display= 'block';
   }
  }
  closeModal() {
  
-  const modalDiv =  document.getElementById('myModal');
+  const modalDiv =  document.getElementById('exampleModal');
   if(modalDiv!=null){
     modalDiv.style.display= 'none';
   }

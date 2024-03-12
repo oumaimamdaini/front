@@ -5,8 +5,8 @@ export enum Profil {
 
 export class User {
   id!: number;
-  nom!: string;
-  prenom!:string;
+  firstName!: string;
+  lastName!:string;
   email!: string;
   password!: string;
   profil!: Profil;
