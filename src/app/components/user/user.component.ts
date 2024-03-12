@@ -43,7 +43,7 @@ export class UserComponent implements OnInit{
         console.log("res",res);
         this.listUser=res 
      
-      }
+      }                
     )
   }
 
