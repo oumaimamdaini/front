@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="logo-container" style="margin-right: 10px;text-align: center;">
+        <img src="assets/Logo.png" alt="Logo" style="width: 150px; height: 60px; margin-block-end: 0px;margin-block-start: 10px;">
+      </div>
+    <title>User List</title>
+</head>
+<body>
+    
+  <div class="card" style="width: 95%; height: 95%;">
+    <div class="example-button-row">
+      <div class="example-flex-container">
+        <div class="example-button-container" style="order: 2;">
+          <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon" style="margin-left: 1650%;"(click)="openModal()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <table style="margin-left: 58px;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>Profile</th>
+               
+            </tr>
+        </thead>
+        <tbody *ngFor ="let user of listUser">
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.nom}}</td>
+                <td>{{user.prenom}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.profil}}</td>
+                
+                <td style="width: 5%; max-width: 100%; margin: 0 auto;">
+                    <button  class="nomodify" click="update(user.id)">
+                        <span class="text">Update</span>
+                        <span class="icon">
+                            <mat-icon class="mat-icon-white">create</mat-icon>
+                        </span>
+                    </button>
+                    </td>
+                <td style="width: 5%; max-width: 100%; margin: 0 auto;">
+        
+                  <button  class="noselect"><span class="text">Delete</span><span class="icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
+
+        </path></svg></span></button>
+                    </td>
+                
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

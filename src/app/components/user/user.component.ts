@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Profile, User,  } from './user';
-
-import { UserService } from './userService.service';
+import { MatDialogRef } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../../model/User';
+import { UserService } from '../../service/User.service';
 
 @Component({
   selector: 'app-user',
@@ -11,22 +11,38 @@ import { Router } from '@angular/router';
   styleUrl: './user.component.css'
 })
 export class UserComponent implements OnInit{
+  
+  //displayedColumns: string[] = ['id', 'nom', 'email', 'password'];
   listUser!:User[];
-  profile = Profile;
    user: User = new User();
    showModal = false;
    idUser! : number; 
+   showCard: boolean=false;
 
 
  constructor(private userservice:UserService, private route:Router){}
-
+ 
+ openModal(): void {
+  const modalDiv =  document.getElementById('myModal');
+  if(modalDiv!=null){
+    modalDiv.style.display= 'block';
+  }
+ }
+ closeModal() {
+ 
+  const modalDiv =  document.getElementById('myModal');
+  if(modalDiv!=null){
+    modalDiv.style.display= 'none';
+  }
+}
 
   ngOnInit(): void {
 
     this.userservice.getAllUsers().subscribe(
       res=>{
         console.log("res",res);
-        this.listUser=res
+        this.listUser=res 
+     
       }
     )
   }
@@ -48,10 +64,7 @@ export class UserComponent implements OnInit{
   
   
     }
-    closeModal() {
-      this.showModal = false;
-    }
-
+    
     update() {
       this.userservice.update(this.idUser, this.user).subscribe((response) => {
         this.userservice.getAllUsers().subscribe(

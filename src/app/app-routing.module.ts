@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 
-import { UserComponent } from './user/user.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
+import { UserComponent } from './components/user/user.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 
 const routes: Routes = [
