@@ -12,7 +12,8 @@ export class Service {
   login(email: string, password: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'http://localhost:4200' // Specify the allowed origin
+      'Access-Control-Allow-Origin': 'http://localhost:4200' 
+      
     });
 
     return this.http.post('http://localhost:8088/springMVC/auth/authenticate', { email, password }, { headers }).pipe(

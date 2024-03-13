@@ -18,10 +18,9 @@
         <input type="password" class="form-control" id="passwordInput" placeholder="Type your password" [(ngModel)]="password" name="password">
         <small class="form-text forget-password"><a href="#">Forget password?</a></small>
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
-      <small *ngIf="isLoggedIn" class="form-text welcome-message">Welcome to the home page</small>
+      <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
+      <small *ngIf="isLoggedIn" class="form-text welcme-message">Welcome to the home page</small>
       <small *ngIf="!isLoggedIn && message" class="form-text error-message">{{ message }}</small>
-      <small class="form-text no-account">Don't have an account? <a href="#">Register</a></small>
     </form>
   </div>
 </div>

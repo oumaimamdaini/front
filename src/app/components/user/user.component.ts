@@ -83,5 +83,16 @@ export class UserComponent implements OnInit{
         this.user = data      
       })
     }
+    deleteUser(id: number): void {
+      this.userservice.deleteUser(id).subscribe(
+        () => {
+          console.log('User deleted successfully');
+          this.userservice.getAllUsers(); // Actualiser la liste des utilisateurs après la suppression
+        },
+        (error) => {
+          console.error('Error deleting user:', error);
+        }
+      );
+    }
 
 }

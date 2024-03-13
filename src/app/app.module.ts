@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { Service } from './components/login/service';
+import { Service } from './service/service';
 import { ProductListComponent } from './liste-produit/liste-produit.component';
 import { UserComponent } from './components/user/user.component';
 import {MatToolbarModule} from '@angular/material/toolbar';

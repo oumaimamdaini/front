@@ -7,7 +7,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent },
   {path : 'User' , component: UserComponent },
   {path: 'SideNav' , component:SidenavComponent}
   

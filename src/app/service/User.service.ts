@@ -26,11 +26,11 @@ export class UserService{
   }
 
   update(id: number, user: User): Observable<User> {
-    return this.http.put<User>(`${this.baseUrl}/${id}`, user);
+    return this.http.put<User>(`${this.baseUrl}/update/${id}`, user);
   }
 
   deleteUser(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}/deleteUser/${id}`);
   }
 
 }

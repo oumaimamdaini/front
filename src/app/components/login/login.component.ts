@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Service } from './service'; // Assurez-vous d'importer votre service
+import { Service } from '../../service/service'; // Assurez-vous d'importer votre service
 import { HttpClientModule } from '@angular/common/http';
+
 
 
 @Component({
@@ -20,12 +21,20 @@ export class LoginComponent {
 
   login() {
     this.service.login(this.email, this.password).subscribe((response) => {
+      console.log(response)
+      this.router.navigate(['/user']); 
       if (response.success) {
         this.isLoggedIn = true;
-        this.router.navigate(['/home']); // Rediriger vers la page d'accueil
+        
+        
       } else {
         this.message = "Login failed. Please try again.";
       }
     });
+  }
+  navigRegistre(){
+    console.log('Navigating to /registre');
+    this.router.navigate(['/registre']); 
+      
   }
 }
