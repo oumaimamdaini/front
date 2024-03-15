@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Service } from '../../service/service'; // Assurez-vous d'importer votre service
-import { HttpClientModule } from '@angular/common/http';
+
 
 
 
