@@ -28,7 +28,13 @@
 <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
 
 </svg>
-  <input autocomplete="off" placeholder="Product Name" class="input-field" type="text" [(ngModel)]="produit.nomProduit" name="nomProduit">
+  <input autocomplete="off" placeholder="Product Name" class="input-field" type="text" [(ngModel)]="produit.nomProduit" name="nomProduit" required #nomProduitVar="ngModel"
+  [ngClass]="{'is-invalid':nomProduitVar.touched && !nomProduitVar.valid}">
+  <div class="invalid-feedback">
+    <span *ngIf="nomProduitVar.errors?.['required']">
+    Write your product name
+    </span>
+    </div>
 </div>
 
 
@@ -51,7 +57,7 @@
   <input autocomplete="off" placeholder="Product Name" class="input-field" type="text" [(ngModel)]="produit.nomProduit" name="nomProduit">
 </div>
 
-<button class="button1" style="margin-left: 25.5%;" (click)="updateProduit()">Save</button>
+<button class="button1" style="margin-left: 25.5%;" (click)="updateProduit(produit.idProduit)">Save</button>
 </form>
 </div>
 </div>
@@ -72,7 +78,7 @@
             <td>{{produit.nomProduit}}</td>
             
             <td style="width: 5%; max-width: 100%; margin: 0 auto;">
-                <button  class="nomodify" data-bs-toggle="modal" data-bs-target="#updateModal">
+                <button  class="nomodify" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="openUpdateModal(produit.idProduit)">
                     <span class="text">Modify</span>
                     <span class="icon">
                         <mat-icon class="mat-icon-white">create</mat-icon>

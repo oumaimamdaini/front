@@ -22,13 +22,19 @@
 <div class="modal-dialog">
 <div class="modal-content">
   <form class="form">
-<p id="heading">Add Product</p>
+<p id="heading">Add Interface</p>
 
 <div class="field">
 <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
 
 </svg>
-  <input autocomplete="off" placeholder="Interface Name" class="input-field" type="text" [(ngModel)]="interface.nomInterface" name="nomInterface">
+  <input autocomplete="off" placeholder="Interface Name" class="input-field" type="text" [(ngModel)]="interface.nomInterface" name="nomInterface" required #nomInterfaceVar="ngModel"
+  [ngClass]="{'is-invalid':nomInterfaceVar.touched && !nomInterfaceVar.valid}">
+  <div class="invalid-feedback">
+    <span *ngIf="nomInterfaceVar.errors?.['required']">
+    Write your interface name
+    </span>
+    </div>
 </div>
 
 
@@ -51,7 +57,7 @@
   <input autocomplete="off" placeholder="Interface Name" class="input-field" type="text" [(ngModel)]="interface.nomInterface" name="nomInterface">
 </div>
 
-<button class="button1" style="margin-left: 25.5%;" (click)="updateInterface()">Save</button>
+<button class="button1" style="margin-left: 25.5%;" (click)="updateInterface(interface.idInterface)">Save</button>
 </form>
 </div>
 </div>
@@ -72,7 +78,7 @@
             <td>{{interface.nomInterface}}</td>
             
             <td style="width: 5%; max-width: 100%; margin: 0 auto;">
-                <button  class="nomodify" data-bs-toggle="modal" data-bs-target="#updateModal">
+                <button  class="nomodify" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="openUpdateModal(interface.idInterface)">
                     <span class="text">Modify</span>
                     <span class="icon">
                         <mat-icon class="mat-icon-white">create</mat-icon>

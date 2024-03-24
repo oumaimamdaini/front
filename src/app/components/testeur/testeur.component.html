@@ -1,0 +1,158 @@
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="logo-container" style="margin-right: 10px;text-align: center;">
+    <img src="assets/Logo.png" alt="Logo" style="width: 15%; height: auto; margin-block-end: 0px;margin-block-start: 10px;">
+  </div>
+<title>Testers List</title>   
+<div class="card" style="width: 95%; height: auto">  
+  <div class="example-button-row">
+    <div class="example-flex-container">
+      <div class="example-button-container" style="order: 2;">
+        <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon" style="margin-left: 1650%;"(click)="openModal()"class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <mat-icon>add</mat-icon>
+        </button>
+
+</div>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+  <form class="form">
+<p id="heading">Add Testeurs</p>
+
+<div class="field">
+<svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+</svg>
+  <input autocomplete="off" placeholder="Tester Name" class="input-field" type="text" [(ngModel)]="testeur.nomTesteur" name="Tester Name" required #TesterNameVar="ngModel"
+  [ngClass]="{'is-invalid':TesterNameVar.touched && !TesterNameVar.valid}">
+  <div class="invalid-feedback">
+    <span *ngIf="TesterNameVar.errors?.['required']">
+    Write your password
+    </span>
+    </div>
+</div>
+
+<div class="field">
+  <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  </svg>
+  <input autocomplete="off" placeholder="Tester Quantity" class="input-field" type="text" [(ngModel)]="testeur.qteTesteur"name="Tester Quantity">
+</div>
+
+<div class="field">
+<svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+</svg>
+<input autocomplete="off" placeholder="Workshop" class="input-field" type="text" [(ngModel)]="testeur.atelier"name="Workshop">
+</div>
+
+<div class="field">
+  <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"> 
+  </svg>
+  <input autocomplete="off" placeholder="UF" class="input-field" type="text" [(ngModel)]="testeur.uf" name="UF">
+  </div>
+
+<div class="field">
+<svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+
+</svg>
+  <input autocomplete="off" placeholder="CMS2 line" class="input-field" type="CMS2 line" [(ngModel)]="testeur.ligneCMS2" name="CMS2 line">
+</div>
+<button class="button1" style="margin-left: 25.5%;" (click)="createTesters()">Save</button>
+</form>
+</div>
+</div>
+</div>
+<!--modal update -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="form">
+    <p id="heading">Add Testeurs</p>
+    
+    <div class="field">
+    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    </svg>
+      <input autocomplete="off" placeholder="Tester Name" class="input-field" type="text" [(ngModel)]="testeur.nomTesteur" name="Tester Name">
+    </div>
+    
+    <div class="field">
+      <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+      </svg>
+      <input autocomplete="off" placeholder="Tester Quantity" class="input-field" type="text" [(ngModel)]="testeur.qteTesteur"name="Tester Quantity">
+    </div>
+    
+    <div class="field">
+    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    </svg>
+    <input autocomplete="off" placeholder="Workshop" class="input-field" type="text" [(ngModel)]="testeur.atelier"name="Workshop">
+    </div>
+    
+    <div class="field">
+      <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+      </svg>
+        <input autocomplete="off" placeholder="UF" class="input-field" type="text" [(ngModel)]="testeur.uf" name="UF">
+      </div>
+    
+    <div class="field">
+    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    
+    </svg>
+      <input autocomplete="off" class="input-field" type="CMS2 line" [(ngModel)]="testeur.ligneCMS2" name="CMS2 line">
+    </div>
+    
+  <button class="button1" style="margin-left: 25.5%;" (click)="updateTester(testeur.idTesteur)">Update</button>
+  </form>
+  </div>
+  </div>
+  </div>
+
+
+
+<table style="margin-left: 58px;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tester Name</th>
+            <th>Tester Quantity</th>
+            <th>Workshop</th>
+            <th>UF</th>
+            <th>CMS2 line</th>
+           
+        </tr>
+    </thead>
+    <tbody *ngFor ="let testeur of listTesteurs">
+        <tr>
+            <td>{{testeur.idTesteur}}</td>
+            <td>{{testeur.nomTesteur}}</td>
+            <td>{{testeur.qteTesteur}}</td>
+            <td>{{testeur.atelier}}</td>
+            <td>{{testeur.uf}}</td>
+            <td>{{testeur.ligneCMS2}}</td>
+            
+            <td style="width: 5%; max-width: 100%; margin: 0 auto;">
+                <button  class="nomodify"  data-bs-toggle="modal" data-bs-target="#updateModal" (click)="openUpdateModal(testeur.idTesteur)">
+                    <span class="text">Modify</span>
+                    <span class="icon">
+                        <mat-icon class="mat-icon-white">create</mat-icon>
+                    </span>
+                </button>
+                
+                </td>
+            <td style="width: 5%; max-width: 100%; margin: 0 auto;">
+    
+              <button  class="noselect" (click)="deleteTester(testeur.idTesteur)"><span class="text">Delete</span><span class="icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
+
+    </path></svg></span></button>
+                </td>
+            
+        </tr>
+        
+    </tbody>
+</table>
+
+</div>

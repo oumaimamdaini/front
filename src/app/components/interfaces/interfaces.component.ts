@@ -59,17 +59,33 @@ export class InterfacesComponent implements OnInit{
   
     }
     
-    updateInterface() {
-      this.interfaceservice.updateInterface(this.idInterface, this.interface).subscribe((response) => {
-        this.interfaceservice.getAllInterface().subscribe(
-          (res) => {
-            console.log("res", res);
-            this.listInterface = res;
-          }
-        );
-      });
-      this.route.navigate(['/listInterface']);
+    getAllInterface(){
+      this.interfaceservice.getAllInterface().subscribe(
+        res=>{
+          console.log("res",res);
+          this.listInterface=res 
+       
+        }                
+      )
     }
+    
+    updateInterface(id:number) {
+      this.interfaceservice.updateInterface(id,this.interface).subscribe(
+        () => {
+        //this.userservice.getAllUsers().subscribe(
+            //console.log("res", res);
+            //this.listUser = res;
+            console.log('Interface updated successfully');
+           // this.userservice.getAllUsers();
+           this.getAllInterface();
+          
+          
+          },
+            (error)=>{
+              console.error('Error deleting user:', error);
+            }
+        );
+      }
 
     getInterfaceById(idInterface : number){
       this.idInterface = idInterface;
@@ -88,7 +104,9 @@ export class InterfacesComponent implements OnInit{
         }
       );
     }
-
+    openUpdateModal(idInterface: number){
+      this.interface.idInterface= idInterface;
+    }
 
 
 

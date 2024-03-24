@@ -24,7 +24,7 @@ export class ChangementService{
   
   }
 
-  updateChangementSerie(idChangementSerie: number, changement: Changement): Observable<Changement> {
+  updateChangementSerie( changement: Changement,idChangementSerie: number): Observable<Changement> {
     return this.http.put<Changement>(`${this.baseUrl}/updateChangementSerie/${idChangementSerie}`, changement);
   }
 

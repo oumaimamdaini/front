@@ -35,9 +35,15 @@
 <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
 
 </svg>
-<input autocomplete="off" placeholder="Date" class="input-field" type="text" [(ngModel)]="changement.dateChangement"name="date">
-</div>
+<input autocomplete="off" placeholder="Date" class="input-field" type="text" [(ngModel)]="changement.dateChangement"name="date" required #dateVar="ngModel"
+[ngClass]="{'is-invalid':dateVar.touched && !dateVar.valid}">
+<div class="invalid-feedback">
+  <span *ngIf="dateVar.errors?.['required']">
+  Write your date
+  </span>
+  </div>
 
+</div>
 
 <button class="button1" style="margin-left: 25.5%;" (click)="createChangementSerie()">Save</button>
 </form>
@@ -66,7 +72,7 @@
 </div>
 
 
-<button class="button1" style="margin-left: 25.5%;" (click)="updateChangementSerie(changement,changement.idChserie)">Save</button>
+<button class="button1" style="margin-left: 25.5%;" (click)="updateChangementSerie(changement.idChserie)">Save</button>
 </form>
 </div>
 </div>
@@ -89,7 +95,7 @@
             <td>{{changement.dateChangement}}</td>
 
             <td style="width: 5%; max-width: 100%; margin: 0 auto;">
-                <button  class="nomodify" data-bs-toggle="modal" data-bs-target="#updateModal">
+                <button  class="nomodify" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="openUpdateModal(changement.idChserie)">
                     <span class="text">Modify</span>
                     <span class="icon">
                         <mat-icon class="mat-icon-white">create</mat-icon>

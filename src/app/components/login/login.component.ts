@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Service } from '../../service/service'; // Assurez-vous d'importer votre service
-
-
+import { Service } from '../../service/serviceLogin';
 
 
 @Component({
@@ -11,7 +9,7 @@ import { Service } from '../../service/service'; // Assurez-vous d'importer votr
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  
+
   email: string='';
   password: string='';
   isLoggedIn: boolean = false;
@@ -22,10 +20,10 @@ export class LoginComponent {
   login() {
     this.service.login(this.email, this.password).subscribe((response) => {
       console.log(response)
-      this.router.navigate(['/user']); 
-      if (response.success) {
+      if (response) {
         this.isLoggedIn = true;
-        
+        this.router.navigate(['/sidenav']); 
+        console.log("Connected successfully");
         
       } else {
         this.message = "Login failed. Please try again.";

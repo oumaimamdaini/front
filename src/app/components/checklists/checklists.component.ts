@@ -55,17 +55,33 @@ export class ChecklistsComponent implements OnInit{
   
     }
     
-    updateChecklist() {
-      this.checklistservice.updateChecklist(this.idChecklist, this.checklist).subscribe((response) => {
-        this.checklistservice.getAllChecklist().subscribe(
-          (res) => {
-            console.log("res", res);
-            this.listChecklist = res;
-          }
-        );
-      });
-      this.route.navigate(['/listChecklist']);
+    getAllChecklist(){
+      this.checklistservice.getAllChecklist().subscribe(
+        res=>{
+          console.log("res",res);
+          this.listChecklist=res 
+       
+        }                
+      )
     }
+    
+    updateChecklist(id:number) {
+      this.checklistservice.updateChecklist(id,this.checklist).subscribe(
+        () => {
+        //this.userservice.getAllUsers().subscribe(
+            //console.log("res", res);
+            //this.listUser = res;
+            console.log('Checklist updated successfully');
+           // this.userservice.getAllUsers();
+           this.getAllChecklist();
+          
+          
+          },
+            (error)=>{
+              console.error('Error deleting user:', error);
+            }
+        );
+      }
 
     getgetChecklistById(idChecklist : number){
       this.idChecklist = idChecklist;
@@ -85,7 +101,9 @@ export class ChecklistsComponent implements OnInit{
       );
     }
 
-
+    openUpdateModal(idChecklist: number){
+      this.checklist.idChecklist= idChecklist;
+    }
 
 
 

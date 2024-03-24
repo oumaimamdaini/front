@@ -28,10 +28,6 @@ export class ProduitsComponent implements OnInit{
       modalDiv.style.display= 'none';
     }
   }
-
-
-
-
   ngOnInit(): void {
     this.produitservice.getAllProduit().subscribe(
       res=>{
@@ -58,17 +54,33 @@ export class ProduitsComponent implements OnInit{
   
     }
     
-    updateProduit() {
-      this.produitservice.updateProduit(this.idProduit, this.produit).subscribe((response) => {
-        this.produitservice.getAllProduit().subscribe(
-          (res) => {
-            console.log("res", res);
-            this.listProduit = res;
-          }
-        );
-      });
-      this.route.navigate(['/listUser']);
+    getAllProduit(){
+      this.produitservice.getAllProduit().subscribe(
+        res=>{
+          console.log("res",res);
+          this.listProduit=res 
+       
+        }                
+      )
     }
+    
+    updateProduit(id:number) {
+      this.produitservice.updateProduit(id,this.produit).subscribe(
+        () => {
+        //this.userservice.getAllUsers().subscribe(
+            //console.log("res", res);
+            //this.listUser = res;
+            console.log('Product updated successfully');
+           // this.userservice.getAllUsers();
+           this.getAllProduit();
+          
+          
+          },
+            (error)=>{
+              console.error('Error deleting user:', error);
+            }
+        );
+      }
 
     getId(idProduit : number){
       this.idProduit = idProduit;
@@ -88,10 +100,9 @@ export class ProduitsComponent implements OnInit{
       );
     }
 
-
-
-
-
+    openUpdateModal(idProduit: number){
+      this.produit.idProduit= idProduit;
+    }
 
 }
 

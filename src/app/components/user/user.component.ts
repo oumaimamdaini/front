@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../model/User';
 import { UserService } from '../../service/User.service';
+import { error } from 'node:console';
+
 
 @Component({
   selector: 'app-user',
@@ -36,13 +38,14 @@ export class UserComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.userservice.getAllUsers().subscribe(
+  /*  this.userservice.getAllUsers().subscribe(
       res=>{
         console.log("res",res);
         this.listUser=res 
      
       }                
-    )
+    )*/
+    this.getAllUsers();
   }
 
   createUser(): void {
@@ -62,19 +65,35 @@ export class UserComponent implements OnInit{
   
   
     }
-    
-    update() {
-      this.userservice.update(this.idUser, this.user).subscribe((response) => {
-        this.userservice.getAllUsers().subscribe(
-          (res) => {
-            console.log("res", res);
-            this.listUser = res;
-          }
-        );
-      });
-      this.route.navigate(['/listUser']);
+    getAllUsers(){
+      this.userservice.getAllUsers().subscribe(
+        res=>{
+          console.log("res",res);
+          this.listUser=res 
+       
+        }                
+      )
     }
-
+    
+    update(id:number) {
+      this.userservice.update(this.user,id).subscribe(
+        () => {
+        //this.userservice.getAllUsers().subscribe(
+            //console.log("res", res);
+            //this.listUser = res;
+            console.log('User updated successfully');
+           // this.userservice.getAllUsers();
+           this.getAllUsers();
+          
+          
+          },
+            (error)=>{
+              console.error('Error deleting user:', error);
+            }
+        );
+      }
+     // this.route.navigate(['/listUser']);
+    
     getId(id : number){
       this.idUser = id;
       this.userservice.getById(id).subscribe((data)=>{
@@ -92,5 +111,8 @@ export class UserComponent implements OnInit{
         }
       );
     }
-
+    openUpdateModal(userId: number){
+      this.user.id= userId;
+    }
+   
 }

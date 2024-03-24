@@ -53,18 +53,33 @@ export class ChangementSerieComponent implements OnInit{
   
   
     }
-    
-    updateChangementSerie(changementserie: Changement,id:number) {
-      this.changementservice.updateChangementSerie(id, changementserie).subscribe((response) => {
-        this.changementservice.getAllChangementSerie().subscribe(
-          (res) => {
-            console.log("res", res);
-            this.listChangement = res;
-          }
-        );
-      });
-      this.route.navigate(['/listChangement']);
+    getAllChangement(){
+      this.changementservice.getAllChangementSerie().subscribe(
+        res=>{
+          console.log("res",res);
+          this.listChangement=res 
+       
+        }                
+      )
     }
+    
+    updateChangementSerie(id:number) {
+      this.changementservice.updateChangementSerie(this.changement,id).subscribe(
+        () => {
+        //this.userservice.getAllUsers().subscribe(
+            //console.log("res", res);
+            //this.listUser = res;
+            console.log(' Updated successfully');
+           // this.userservice.getAllUsers();
+           this.getAllChangement();
+          
+          
+          },
+            (error)=>{
+              console.error('Error deleting user:', error);
+            }
+        );
+      }
 
     getChangementSerieById(idChangementSerie : number){
       this.idChangementSerie = this.idChangementSerie;
@@ -83,7 +98,9 @@ export class ChangementSerieComponent implements OnInit{
         }
       );
     }
-
+    openUpdateModal(idChangementSerie: number){
+      this.changement.idChserie= idChangementSerie;
+    }
 
 
 

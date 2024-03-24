@@ -34,14 +34,26 @@
   <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
       <!-- Use an appropriate SVG path for Last Name -->
   </svg>
-  <input autocomplete="off" placeholder="Outillage" class="input-field" type="text" [(ngModel)]="checklist.outillage"name="outillage">
+  <input autocomplete="off" placeholder="Outillage" class="input-field" type="text" [(ngModel)]="checklist.outillage"name="outillage" required #outillageVar="ngModel"
+  [ngClass]="{'is-invalid':outillageVar.touched && !outillageVar.valid}">
+  <div class="invalid-feedback">
+    <span *ngIf="outillageVar.errors?.['required']">
+     
+    </span>
+  </div>>
 </div>
 
 <div class="field">
 <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
 
 </svg>
-<input autocomplete="off" placeholder="Date" class="input-field" type="text" [(ngModel)]="checklist.date"name="date">
+<input autocomplete="off" placeholder="Date" class="input-field" type="text" [(ngModel)]="checklist.date"name="date" required #dateVar="ngModel"
+[ngClass]="{'is-invalid':dateVar.touched && !dateVar.valid}">
+<div class="invalid-feedback">
+  <span *ngIf="dateVar.errors?.['required']">
+    Write your date
+  </span>
+</div>
 </div>
 
 
@@ -79,7 +91,7 @@
 </div>
 
 
-<button class="button1" style="margin-left: 25.5%;" (click)="updateChecklist()">Save</button>
+<button class="button1" style="margin-left: 25.5%;" (click)="updateChecklist(checklist.idChecklist)">Save</button>
 </form>
 </div>
 </div>
@@ -104,7 +116,7 @@
             <td>{{checklist.date}}</td>
 
             <td style="width: 5%; max-width: 100%; margin: 0 auto;">
-                <button  class="nomodify" data-bs-toggle="modal" data-bs-target="#updateModal">
+                <button  class="nomodify" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="openUpdateModal(checklist.idChecklist)">
                     <span class="text">Modify</span>
                     <span class="icon">
                         <mat-icon class="mat-icon-white">create</mat-icon>
